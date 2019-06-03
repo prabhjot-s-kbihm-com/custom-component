@@ -1,9 +1,7 @@
-import {types} from './types.js'
+import {types} from './types'
 const initialState = {
     files: [
-        {id: 1, file: 'notes.txt', folder: 'txt'},
-        {id: 2, file: 'book.pdf', folder: 'pdf'},
-        {id: 3, file: 'cv.pdf', folder: 'pdf'},
+        {id: 1, issuer: 'nyxycy', book: 'abc', spread: "abc", fee: "abc", prem: "discounted"}
         // more files ...
     ]
 };

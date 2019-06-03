@@ -1,44 +1,47 @@
 import React, { Component } from 'react'
-import {Provider} from 'react-redux';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
-
-import {actions} from './actions/fileAction.js'
 import {AgGridReact} from "ag-grid-react";
+import {actions} from './ducks/actions';
+import "ag-grid-enterprise";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
- import {CustomContainer, GridTitle, Grid} from 'custom-component'
-import "ag-grid-enterprise";
+// import {CustomContainer, GridTitle, Grid} from 'custom-component'
+import BookRenderer from './spread/BookRenderer';
+
 class App extends Component {
   colDefs = [
-    {field: "file"},
-    {field: "folder", rowGroup: true, hide: true},
-    {field: "dateModified"},
-    {field: "size"}
+    {field: 'check', checkboxSelection: true},
+    {field: "issuer", headerName: "Issuer"},
+    {field: "book", headerName: "Book"},
+    {field: "spread", headerName: "Spread (bp)"},
+    {field: "fee", headerName: "fee(bps)"},
+    {field: "prem", headerName: "prem/disc/fee"}
   ];
 
-  autoGroupColumnDef = {
-    headerName: "Folder",
-    sort: 'asc',
-    cellRendererParams: {
-      suppressCount: true
-    }
-  };
+  // autoGroupColumnDef = {
+  //   headerName: "Folder",
+  //   sort: 'asc',
+  //   cellRendererParams: {
+  //     suppressCount: true
+  //   }
+  // };
 
   render() {
+    console.log(this.props)
     return (
       <div id='myGrid' style={{height: 450}} className="ag-theme-balham">
       {/* <GridTitle title="Spreads and Fees"/> */}
-        <Grid
+        <AgGridReact
           columnDefs={this.colDefs}
-          rowData={this.props.files}
+          rowData={this.props.files.files}
           deltaRowDataMode={true}
           getRowNodeId={data => data.id}
-          autoGroupColumnDef={this.autoGroupColumnDef}
+          //autoGroupColumnDef={this.autoGroupColumnDef}
           groupDefaultExpanded={-1}
           onFirstDataRendered={params => params.api.sizeColumnsToFit()}
           getContextMenuItems={this.getContextMenuItems}>
-        </Grid>
+        </AgGridReact>
       </div>
     )
   }

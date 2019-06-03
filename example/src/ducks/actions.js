@@ -1,4 +1,4 @@
-import {types} from '../types.js'
+import {types} from './types'
 export const actions = {
     newFile(folder) {
         return {
