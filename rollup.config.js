@@ -37,7 +37,7 @@ export default {
     commonjs({
       include: 'node_modules/**',
       namedExports: {
-        'node_modules/ag-grid-community/main.js': ['AgGridReact', 'AgGridColumn', 'GridOptionsWrapper']
+        'node_modules/ag-grid-community/main.js': ['AgGridReact', 'AgGridColumn']
       }
     })
   ]
